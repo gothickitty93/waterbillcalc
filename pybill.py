@@ -11,7 +11,8 @@ def calculate_water_bill(prev_reading, new_reading, rate):
     float: The calculated water bill amount.
     """
     usage = new_reading - prev_reading
-    bill_amount = usage * rate
+    sratecalc = usage + srate
+    bill_amount = usage * wrate + sratecalc + sratebase
     return bill_amount
 
 if __name__ == "__main__":
@@ -19,8 +20,10 @@ if __name__ == "__main__":
 
     prev_reading = float(input("Enter your previous reading: "))
     new_reading = float(input("Enter your current reading: "))
-    rate = float(input("Enter the rate per unit: "))
-    print("Commonly measured in 1,000 of Gallons)")
+    wrate = float(input("Enter your water cost per 1,000's: "))
+    srate = float(input("Enter your sewer cost per 1,000's: "))
+    sratebase = float(input("Enter your sewer cost base: "))
+    
 
-    bill_amount = calculate_water_bill(prev_reading, new_reading, rate)
+    bill_amount = calculate_water_bill(prev_reading, new_reading, wrate)
     print(f"Your water bill amount is: ${bill_amount:.2f}")
