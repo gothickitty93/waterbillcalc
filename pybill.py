@@ -1,4 +1,4 @@
-def calculate_water_bill(prev_reading, new_reading, rate):
+def calculate_water_bill(prev_reading, new_reading, wrate, srate, sratebase):
     """
     Calculates the water bill based on previous and new readings and a rate per unit.
 
@@ -13,7 +13,7 @@ def calculate_water_bill(prev_reading, new_reading, rate):
     float: The calculated water bill amount.
     """
     usage = new_reading - prev_reading
-    sratecalc = usage + srate
+    sratecalc = usage * srate
     bill_amount = usage * wrate + sratecalc + sratebase
     return bill_amount, usage
 
@@ -27,6 +27,6 @@ if __name__ == "__main__":
     sratebase = float(input("Enter your sewer base cost: "))
     
 
-    bill_amount, usage = calculate_water_bill(prev_reading, new_reading, wrate)
+    bill_amount, usage = calculate_water_bill(prev_reading, new_reading, wrate, srate, sratebase)
     print(f"Your water bill amount is: ${bill_amount:.2f}")
     print(f"Water used: {usage:.2f}")
